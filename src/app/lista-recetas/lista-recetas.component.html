@@ -1,0 +1,16 @@
+<section>
+    <div *ngFor="let receta of listaRecetas">
+        <img [src]="receta.imagen" [alt]="receta.nombre">
+        <h5>{{receta.nombre}}</h5>
+        <ul *ngFor="let ingrediente of receta.ingredientes">
+            <li>{{ingrediente}}</li>
+        </ul>
+        <p>Dificultad: <span [ngClass]="{'verde': receta.dificultad == 'Baja',
+                                         'amarillo': receta.dificultad == 'Media',
+                                         'rojo': receta.dificultad == 'Alta'}">
+                                         {{receta.dificultad}}</span>
+        </p>
+        <button>Aprende ya!</button>
+        <button>Guardar en favoritos</button>
+    </div>
+</section>
