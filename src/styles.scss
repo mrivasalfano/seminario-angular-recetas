@@ -8,52 +8,82 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     transition: all .5s ease-in-out;
 }
 
 .menu-hamburguesa__btn {
-    width: 40px;
+    width: 30px;
     height: 6px;
     background: #000;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
-    transition: all .5s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .menu-hamburguesa__btn::before,
 .menu-hamburguesa__btn::after {
     content: '';
     position: absolute;
-    width: 40px;
+    width: 30px;
     height: 6px;
     background: #000;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
-    transition: all .5s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .menu-hamburguesa__btn::before {
-    transform: translateY(-16px);
+    transform: translateY(-10px);
 }
 
 .menu-hamburguesa__btn::after {
-    transform: translateY(16px);
+    transform: translateY(10px);
 }
 
 //Animación
 .menu-hamburguesa.abrirMenu .menu-hamburguesa__btn {
-    transform: translateX(-50px);
+    transform: translateX(50px);
     background: transparent;
     box-shadow: none;
 }
 
 .menu-hamburguesa.abrirMenu .menu-hamburguesa__btn::before {
-    transform: rotate(45deg) translate(35px, -35px);
+    transform: rotate(45deg) translate(-35px, 35px);
 }
 
 .menu-hamburguesa.abrirMenu .menu-hamburguesa__btn::after {
-    transform: rotate(-45deg) translate(35px, 35px);
+    transform: rotate(-45deg) translate(-35px, -35px);
+}
+
+// NAVBAR
+.navbar-links {
+    position: fixed;
+    z-index: 15;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 100px;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    background: #d53f8c;
+    visibility: hidden;
+    transform: translate3d(280px, 0, 0);
+    transition: opacity .2s, visibility 0ms linear .2s, transform .5s ease;
+}
+
+.navbar-links a {
+    margin: 10px auto;
+}
+
+.animacion {
+    transform: translateZ(0) !important;
+    opacity: 1;
+    visibility: visible !important;
+    transition: opacity .2s, visibility 0ms, transform .5s ease !important;
 }

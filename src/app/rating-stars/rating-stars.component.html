@@ -1,0 +1,3 @@
+<div>
+    <span class="fa fa-star" *ngFor="let rate of isRated; let i=index" [ngClass]="{'rate': rate}" (click)="rateHandler(i)"></span>
+</div>

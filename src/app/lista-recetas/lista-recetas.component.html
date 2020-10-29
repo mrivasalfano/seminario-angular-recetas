@@ -1,16 +1,16 @@
-<section>
-    <div *ngFor="let receta of listaRecetas">
-        <img [src]="receta.imagen" [alt]="receta.nombre">
-        <h5>{{receta.nombre}}</h5>
-        <ul *ngFor="let ingrediente of receta.ingredientes">
-            <li>{{ingrediente}}</li>
-        </ul>
-        <p>Dificultad: <span [ngClass]="{'verde': receta.dificultad == 'Baja',
-                                         'amarillo': receta.dificultad == 'Media',
-                                         'rojo': receta.dificultad == 'Alta'}">
-                                         {{receta.dificultad}}</span>
-        </p>
-        <button>Aprende ya!</button>
-        <button>Guardar en favoritos</button>
+<section class="container md:flex md:justify-around md:items-center">
+    <div *ngFor="let receta of listaRecetas" class="w-64 my-10 mx-auto relative">
+        <div class="rounded overflow-hidden relative">
+            <img class="transition-transform duration-200 ease-in-out transform hover:scale-110" [src]="receta.imagen" [alt]="receta.nombre">
+            <p class="absolute inline left-0 bottom-0 ml-2 mb-1 text-white bg-black bg-opacity-75 p-2 rounded">Dificultad <span>{{receta.dificultad | lowercase}}</span></p>
+        </div>
+        <div class="flex items-center mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="gray" width="18px" height="18px"><path d="M0 0h24v24H0z" fill="none"/><path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+            <p class="inline ml-2 text-gray-700">{{receta.tiempo}}</p>
+        </div>
+        <h5 class="font-bold text-2xl">{{receta.nombre}}</h5>
+        <app-rating-stars [(rate)]="receta.rate"></app-rating-stars>
+        {{receta.rate}}
+        <svg class="absolute right-0 bottom-0" xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 0 24 24" width="30"><path d="M0 0h24v24H0z" fill="none"/><path fill="#d53f8c" d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>
     </div>
 </section>

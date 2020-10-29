@@ -1,6 +1,7 @@
 export interface Receta {
     nombre: string;
-    ingredientes: string[];
     dificultad: string;
     imagen: string;
+    tiempo: string;
+    rate: number;
 }
