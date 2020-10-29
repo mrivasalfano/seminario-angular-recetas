@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Receta} from './Receta';
 import {RecetasFavoritasService} from '../recetas-favoritas.service';
+import { observable } from 'rxjs';
 
 @Component({
   selector: 'app-lista-recetas',
@@ -33,7 +34,11 @@ export class ListaRecetasComponent implements OnInit {
     }
   ];
 
-  constructor(private recetasFavoritas: RecetasFavoritasService) { }
+  listaFavoritas: Receta[];
+
+  constructor(private recetasFavoritas: RecetasFavoritasService) {
+    recetasFavoritas.listaFavoritas.subscribe((observable) => this.listaFavoritas = observable);
+  }
 
   ngOnInit(): void {
   }
@@ -43,7 +48,7 @@ export class ListaRecetasComponent implements OnInit {
   }
 
   favoritoClass(receta: Receta) {
-    const yaExisteReceta = this.recetasFavoritas.listaFavoritas.find((r) => r.nombre == receta.nombre);
+    const yaExisteReceta = this.listaFavoritas.find((r) => r.nombre == receta.nombre);
 
     if (yaExisteReceta)
       return 'text-pink-600';

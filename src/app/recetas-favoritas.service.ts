@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Receta } from './lista-recetas/Receta';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecetasFavoritasService {
-  listaFavoritas: Receta[];
+  private _listaFavoritas: Receta[];
+  listaFavoritas: BehaviorSubject<Receta[]> = new BehaviorSubject([]);
 
   constructor() { 
-    this.listaFavoritas = [];
+    this._listaFavoritas = [];
   }
 
   add(receta: Receta) {
-    const item: Receta = this.listaFavoritas.find((r) => r.nombre == receta.nombre)
+    const item: Receta = this._listaFavoritas.find((r) => r.nombre == receta.nombre)
 
     if(!item)
-      this.listaFavoritas.push({... receta});
+      this._listaFavoritas.push({... receta});
     else
-      this.listaFavoritas = this.listaFavoritas.filter((r) => r.nombre != receta.nombre);
+      this._listaFavoritas = this._listaFavoritas.filter((r) => r.nombre != receta.nombre);
+
+      this.listaFavoritas.next(this._listaFavoritas);
   }
 }

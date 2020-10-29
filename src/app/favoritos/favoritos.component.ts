@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Receta } from '../lista-recetas/Receta';
 import { RecetasFavoritasService } from '../recetas-favoritas.service';
 
 @Component({
@@ -7,8 +9,11 @@ import { RecetasFavoritasService } from '../recetas-favoritas.service';
   styleUrls: ['./favoritos.component.scss']
 })
 export class FavoritosComponent implements OnInit {
+  listaFavoritas$: Observable<Receta[]>;
 
-  constructor(public recetasFavoritas: RecetasFavoritasService) { }
+  constructor(private recetasFavoritas: RecetasFavoritasService) {
+    this.listaFavoritas$ = recetasFavoritas.listaFavoritas.asObservable();
+  }
 
   ngOnInit(): void {
   }
