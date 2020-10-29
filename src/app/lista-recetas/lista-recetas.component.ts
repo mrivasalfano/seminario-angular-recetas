@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Receta} from './Receta';
+import {RecetasFavoritasService} from '../recetas-favoritas.service';
 
 @Component({
   selector: 'app-lista-recetas',
@@ -32,9 +33,20 @@ export class ListaRecetasComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private recetasFavoritas: RecetasFavoritasService) { }
 
   ngOnInit(): void {
+  }
+
+  agregarFavoritos(receta: Receta) {
+    this.recetasFavoritas.add(receta);
+  }
+
+  favoritoClass(receta: Receta) {
+    const yaExisteReceta = this.recetasFavoritas.listaFavoritas.find((r) => r.nombre == receta.nombre);
+
+    if (yaExisteReceta)
+      return 'text-pink-600';
   }
 
 }
