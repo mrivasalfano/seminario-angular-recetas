@@ -23,4 +23,8 @@ export class RecetasFavoritasService {
 
       this.listaFavoritas.next(this._listaFavoritas);
   }
+
+  existeReceta(receta: Receta) {
+    return this._listaFavoritas.find((r) => r.nombre == receta.nombre);
+  }
 }

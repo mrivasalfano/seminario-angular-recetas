@@ -33,9 +33,4 @@ export class RatingStarsComponent implements OnInit {
 
     this.rateChange.emit(rateNumber+1);
   }
-
-  pintar() {
-    console.log('pintado');
-    
-  }
 }

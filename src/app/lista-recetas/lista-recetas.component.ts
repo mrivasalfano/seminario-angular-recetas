@@ -34,10 +34,7 @@ export class ListaRecetasComponent implements OnInit {
     }
   ];
 
-  listaFavoritas: Receta[];
-
   constructor(private recetasFavoritas: RecetasFavoritasService) {
-    recetasFavoritas.listaFavoritas.subscribe((observable) => this.listaFavoritas = observable);
   }
 
   ngOnInit(): void {
@@ -48,7 +45,7 @@ export class ListaRecetasComponent implements OnInit {
   }
 
   favoritoClass(receta: Receta) {
-    const yaExisteReceta = this.listaFavoritas.find((r) => r.nombre == receta.nombre);
+    const yaExisteReceta = this.recetasFavoritas.existeReceta(receta);
 
     if (yaExisteReceta)
       return 'text-pink-600';
